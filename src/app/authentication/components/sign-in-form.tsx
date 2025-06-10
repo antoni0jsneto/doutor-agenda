@@ -1,7 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -22,6 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
 
 const loginSchema = z.object({
   email: z.string().trim().email({ message: "E-mail inválido" }),
@@ -32,6 +36,7 @@ const loginSchema = z.object({
 });
 
 const SignInForm = () => {
+  const router = useRouter();
   const loginForm = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -40,8 +45,21 @@ const SignInForm = () => {
     },
   });
 
-  function onLoginSubmit(values: z.infer<typeof loginSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
+    await authClient.signIn.email(
+      {
+        email: values.email,
+        password: values.password,
+      },
+      {
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+        onError: (error) => {
+          toast.error("E-mail ou senha inválidos");
+        },
+      },
+    );
   }
 
   return (
@@ -51,10 +69,7 @@ const SignInForm = () => {
         <CardDescription>Faça login para continuar</CardDescription>
       </CardHeader>
       <Form {...loginForm}>
-        <form
-          onSubmit={loginForm.handleSubmit(onLoginSubmit)}
-          className="space-y-8"
-        >
+        <form onSubmit={loginForm.handleSubmit(onSubmit)} className="space-y-8">
           <CardContent className="grid gap-6">
             <FormField
               control={loginForm.control}
@@ -93,8 +108,19 @@ const SignInForm = () => {
             />
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">
-              Entrar
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={loginForm.formState.isSubmitting}
+            >
+              {loginForm.formState.isSubmitting ? (
+                <div className="flex items-center justify-center gap-2">
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Carregando...
+                </div>
+              ) : (
+                "Entrar"
+              )}
             </Button>
           </CardFooter>
         </form>
