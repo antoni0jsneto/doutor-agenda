@@ -113,14 +113,10 @@ const SignInForm = () => {
               className="w-full"
               disabled={loginForm.formState.isSubmitting}
             >
-              {loginForm.formState.isSubmitting ? (
-                <div className="flex items-center justify-center gap-2">
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Carregando...
-                </div>
-              ) : (
-                "Entrar"
+              {loginForm.formState.isSubmitting && (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               )}
+              Entrar
             </Button>
           </CardFooter>
         </form>

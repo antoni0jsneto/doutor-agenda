@@ -145,14 +145,10 @@ const SignUpForm = () => {
               className="w-full"
               disabled={registerForm.formState.isSubmitting}
             >
-              {registerForm.formState.isSubmitting ? (
-                <div className="flex items-center justify-center gap-2">
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Carregando...
-                </div>
-              ) : (
-                "Criar conta"
+              {registerForm.formState.isSubmitting && (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               )}
+              Criar conta
             </Button>
           </CardFooter>
         </form>
