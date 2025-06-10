@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+import { IoMdLogIn } from "react-icons/io";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -45,7 +47,7 @@ const SignInForm = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
+  const handleSubmit = async (values: z.infer<typeof loginSchema>) => {
     await authClient.signIn.email(
       {
         email: values.email,
@@ -60,7 +62,14 @@ const SignInForm = () => {
         },
       },
     );
-  }
+  };
+
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: `${window.location.origin}/dashboard`,
+    });
+  };
 
   return (
     <Card>
@@ -69,7 +78,10 @@ const SignInForm = () => {
         <CardDescription>Faça login para continuar</CardDescription>
       </CardHeader>
       <Form {...loginForm}>
-        <form onSubmit={loginForm.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={loginForm.handleSubmit(handleSubmit)}
+          className="space-y-8"
+        >
           <CardContent className="grid gap-6">
             <FormField
               control={loginForm.control}
@@ -107,16 +119,27 @@ const SignInForm = () => {
               )}
             />
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex flex-col gap-4 sm:gap-2">
             <Button
               type="submit"
               className="w-full"
               disabled={loginForm.formState.isSubmitting}
             >
-              {loginForm.formState.isSubmitting && (
+              {loginForm.formState.isSubmitting ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <IoMdLogIn />
               )}
               Entrar
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full"
+              onClick={handleGoogleSignIn}
+            >
+              <FcGoogle />
+              Entrar com Google
             </Button>
           </CardFooter>
         </form>

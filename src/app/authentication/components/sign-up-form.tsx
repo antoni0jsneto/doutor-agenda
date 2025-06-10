@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { RiUserAddLine } from "react-icons/ri";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -51,7 +52,7 @@ const SignUpForm = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof registerSchema>) {
+  const handleSubmit = async (values: z.infer<typeof registerSchema>) => {
     await authClient.signUp.email(
       {
         email: values.email,
@@ -72,7 +73,7 @@ const SignUpForm = () => {
         },
       },
     );
-  }
+  };
 
   return (
     <Card>
@@ -82,7 +83,7 @@ const SignUpForm = () => {
       </CardHeader>
       <Form {...registerForm}>
         <form
-          onSubmit={registerForm.handleSubmit(onSubmit)}
+          onSubmit={registerForm.handleSubmit(handleSubmit)}
           className="space-y-8"
         >
           <CardContent className="grid gap-6">
@@ -145,8 +146,10 @@ const SignUpForm = () => {
               className="w-full"
               disabled={registerForm.formState.isSubmitting}
             >
-              {registerForm.formState.isSubmitting && (
+              {registerForm.formState.isSubmitting ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <RiUserAddLine />
               )}
               Criar conta
             </Button>
