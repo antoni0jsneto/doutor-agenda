@@ -6,7 +6,7 @@ import {
   DollarSignIcon,
   TrashIcon,
 } from "lucide-react";
-import { useAction } from "next-safe-action";
+import { useAction } from "next-safe-action/hooks";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -130,8 +130,13 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancelar</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDeleteDoctorClick}>
+              <AlertDialogCancel className="cursor-pointer">
+                Cancelar
+              </AlertDialogCancel>
+              <AlertDialogAction
+                className="cursor-pointer"
+                onClick={handleDeleteDoctorClick}
+              >
                 Deletar
               </AlertDialogAction>
             </AlertDialogFooter>
