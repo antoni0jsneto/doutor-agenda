@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Ban,
   CalendarIcon,
   ClockIcon,
   DollarSignIcon,
@@ -133,13 +134,19 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel className="cursor-pointer">
-                Cancelar
+                <>
+                  <Ban />
+                  Cancelar
+                </>
               </AlertDialogCancel>
               <AlertDialogAction
                 className="cursor-pointer"
                 onClick={handleDeleteDoctorClick}
               >
-                Deletar
+                <>
+                  <TrashIcon />
+                  Deletar
+                </>
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

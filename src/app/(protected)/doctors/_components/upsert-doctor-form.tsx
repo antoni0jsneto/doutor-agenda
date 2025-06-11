@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SaveIcon, UserPlus } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 import { useForm } from "react-hook-form";
 import { NumericFormat } from "react-number-format";
@@ -390,11 +391,18 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
               type="submit"
               disabled={upsertDoctorAction.isPending}
             >
-              {upsertDoctorAction.isPending
-                ? "Salvando..."
-                : doctor
-                  ? "Salvar"
-                  : "Adicionar"}
+              {upsertDoctorAction.isPending ? (
+                "Salvando..."
+              ) : doctor ? (
+                <>
+                  <SaveIcon /> Salvar
+                </>
+              ) : (
+                <>
+                  <UserPlus />
+                  Adicionar
+                </>
+              )}
             </Button>
           </DialogFooter>
         </form>
