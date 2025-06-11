@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Phone, User } from "lucide-react";
+import { Mail, Phone, ReceiptText, User } from "lucide-react";
 import { useState } from "react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -82,7 +82,9 @@ const PatientCard = ({ patient }: PatientCardProps) => {
           onOpenChange={setIsUpsertPatientDialogOpen}
         >
           <DialogTrigger asChild>
-            <Button className="w-full">Ver detalhes</Button>
+            <Button className="w-full">
+              <ReceiptText /> Ver detalhes
+            </Button>
           </DialogTrigger>
           <UpsertPatientForm
             patient={patient}

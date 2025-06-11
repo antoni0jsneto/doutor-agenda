@@ -1,4 +1,4 @@
-import { EditIcon, MoreVerticalIcon, TrashIcon } from "lucide-react";
+import { Ban, EditIcon, MoreVerticalIcon, TrashIcon } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -84,8 +84,12 @@ const PatientsTableActions = ({ patient }: PatientsTableActionsProps) => {
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                  <AlertDialogCancel>
+                    <Ban />
+                    Cancelar
+                  </AlertDialogCancel>
                   <AlertDialogAction onClick={handleDeletePatientClick}>
+                    <TrashIcon />
                     Deletar
                   </AlertDialogAction>
                 </AlertDialogFooter>

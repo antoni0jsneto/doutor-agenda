@@ -5,6 +5,7 @@ import {
   CalendarIcon,
   ClockIcon,
   DollarSignIcon,
+  ReceiptText,
   TrashIcon,
 } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
@@ -104,7 +105,9 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
           onOpenChange={setIsUpsertDoctorDialogOpen}
         >
           <DialogTrigger asChild>
-            <Button className="w-full">Ver detalhes</Button>
+            <Button className="w-full">
+              <ReceiptText /> Ver detalhes
+            </Button>
           </DialogTrigger>
           <UpsertDoctorForm
             doctor={{
@@ -134,19 +137,15 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel className="cursor-pointer">
-                <>
-                  <Ban />
-                  Cancelar
-                </>
+                <Ban />
+                Cancelar
               </AlertDialogCancel>
               <AlertDialogAction
                 className="cursor-pointer"
                 onClick={handleDeleteDoctorClick}
               >
-                <>
-                  <TrashIcon />
-                  Deletar
-                </>
+                <TrashIcon />
+                Deletar
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
