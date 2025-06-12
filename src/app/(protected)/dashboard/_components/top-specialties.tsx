@@ -69,10 +69,10 @@ export default function TopSpecialties({
             return (
               <div
                 key={specialty.specialty}
-                className="flex items-center gap-2"
+                className="flex items-center gap-4"
               >
-                <div className="bg-primary/10 flex h-10 w-10 items-center justify-center rounded-full">
-                  <Icon className="text-primary h-5 w-5" />
+                <div className="bg-primary/10 flex items-center justify-center rounded-full p-3">
+                  <Icon className="text-primary size-5" />
                 </div>
                 <div className="flex w-full flex-col justify-center">
                   <div className="flex w-full justify-between">
