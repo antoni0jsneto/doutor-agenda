@@ -58,6 +58,7 @@ const SignInForm = () => {
           router.push("/dashboard");
         },
         onError: (error) => {
+          console.log(error);
           toast.error("E-mail ou senha inválidos");
         },
       },
