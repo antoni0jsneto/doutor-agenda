@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dr Agenda
 
-## Getting Started
+**Dr Agenda** é um sistema moderno e completo para gestão de clínicas, consultórios e profissionais da saúde. Com ele, você pode gerenciar agendamentos online, pacientes, médicos, relatórios e muito mais, tudo de forma simples, rápida e segura.
 
-First, run the development server:
+## 🌐 Demonstração
+
+Acesse a demo online:  
+👉 [https://doutor-agenda-green.vercel.app/](https://doutor-agenda-green.vercel.app/)
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- **Next.js 15 (App Router)**
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS**
+- **shadcn/ui** (componentes de UI)
+- **React Hook Form** (formulários)
+- **Zod** (validação)
+- **BetterAuth** (autenticação)
+- **PostgreSQL** (banco de dados)
+- **Drizzle ORM** (acesso ao banco)
+- **dayjs** (manipulação de datas)
+- **react-number-format** (máscaras de input)
+- **Radix UI** (acessibilidade e componentes base)
+- **Stripe** (pagamentos)
+- **Google Cloud** (login OAuth)
+
+---
+
+## 📋 Pré-requisitos
+
+- Node.js **18+**
+- Yarn, npm ou pnpm
+- Banco de dados PostgreSQL
+- Conta no [Google Cloud Console](https://console.cloud.google.com/) (para OAuth)
+- Conta no [Stripe](https://dashboard.stripe.com/) (para pagamentos)
+
+---
+
+## 🛠️ Instalação
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/antoni0jsneto/doutor-agenda.git
+cd doutor-agenda
+```
+
+### 2. Instale as dependências
+
+```bash
+npm install
+# ou
+yarn
+# ou
+pnpm install
+```
+
+### 3. Configure as variáveis de ambiente
+
+Crie um arquivo `.env.local` na raiz do projeto com o seguinte conteúdo:
+
+```env
+# Banco de dados
+DATABASE_URL=postgresql://usuario:senha@host:porta/nome_do_banco
+
+# Google OAuth
+GOOGLE_CLIENT_ID=suaclientid.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=sua_client_secret
+GOOGLE_REDIRECT_URI=http://localhost:3000/api/auth/callback/google
+
+# Stripe
+STRIPE_SECRET_KEY=sua_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=sua_stripe_webhook_secret
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=sua_stripe_publishable_key
+
+# Outras variáveis conforme necessário
+```
+
+#### Como obter as variáveis do Google Cloud
+
+1. Acesse o [Google Cloud Console](https://console.cloud.google.com/).
+2. Crie um novo projeto ou selecione um existente.
+3. Vá em **APIs & Services > Credentials**.
+4. Clique em **Create Credentials > OAuth client ID**.
+5. Escolha **Web application** e adicione o URI de redirecionamento (ex: `http://localhost:3000/api/auth/callback/google`).
+6. Copie o **Client ID** e **Client Secret** para o `.env.local`.
+
+#### Como obter as variáveis do Stripe
+
+1. Acesse o [Stripe Dashboard](https://dashboard.stripe.com/).
+2. Vá em **Developers > API keys** para pegar a **Secret Key** e **Publishable Key**.
+3. Para o webhook, crie um endpoint e copie o **Webhook Secret**.
+
+---
+
+### 4. Rode as migrações do banco
+
+```bash
+npx drizzle-kit push
+```
+
+### 5. Inicie o projeto
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤝 Contribuindo
 
-## Learn More
+Contribuições são muito bem-vindas!  
+Sinta-se à vontade para abrir issues, enviar pull requests ou sugerir melhorias.
 
-To learn more about Next.js, take a look at the following resources:
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature/fix: `git checkout -b minha-feature`
+3. Commit suas alterações: `git commit -m 'feat: minha nova feature'`
+4. Push para a branch: `git push origin minha-feature`
+5. Abra um Pull Request
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 Licença
 
-## Deploy on Vercel
+Este projeto está sob a licença MIT.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Dúvidas? Sugestões?**  
+Abra uma issue ou entre em contato!
+
+---
+
+**Repositório:** [https://github.com/antoni0jsneto/doutor-agenda](https://github.com/antoni0jsneto/doutor-agenda)  
+**Demo:** [https://doutor-agenda-green.vercel.app/](https://doutor-agenda-green.vercel.app/)
