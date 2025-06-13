@@ -21,6 +21,14 @@ const ClinicFormPage = async () => {
     redirect("/authentication");
   }
 
+  if (session.user.clinic) {
+    redirect("/dashboard");
+  }
+
+  if (session.user.plan) {
+    redirect("/dashboard");
+  }
+
   return (
     <div>
       <Dialog open>

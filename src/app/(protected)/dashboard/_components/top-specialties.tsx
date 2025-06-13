@@ -60,34 +60,42 @@ export default function TopSpecialties({
 
         {/* specialtys List */}
         <div className="space-y-6">
-          {topSpecialties.map((specialty) => {
-            const Icon = getSpecialtyIcon(specialty.specialty);
-            // Porcentagem de ocupação da especialidade baseando-se no maior número de agendamentos
-            const progressValue =
-              (specialty.appointments / maxAppointments) * 100;
+          {topSpecialties.length > 0 ? (
+            topSpecialties.map((specialty) => {
+              const Icon = getSpecialtyIcon(specialty.specialty);
+              // Porcentagem de ocupação da especialidade baseando-se no maior número de agendamentos
+              const progressValue =
+                (specialty.appointments / maxAppointments) * 100;
 
-            return (
-              <div
-                key={specialty.specialty}
-                className="flex items-center gap-4"
-              >
-                <div className="bg-primary/10 flex items-center justify-center rounded-full p-3">
-                  <Icon className="text-primary size-5" />
-                </div>
-                <div className="flex w-full flex-col justify-center">
-                  <div className="flex w-full justify-between">
-                    <h3 className="text-sm">{specialty.specialty}</h3>
-                    <div className="text-right">
-                      <span className="text-muted-foreground text-sm font-medium">
-                        {specialty.appointments} agend.
-                      </span>
-                    </div>
+              return (
+                <div
+                  key={specialty.specialty}
+                  className="flex items-center gap-4"
+                >
+                  <div className="bg-primary/10 flex items-center justify-center rounded-full p-3">
+                    <Icon className="text-primary size-5" />
                   </div>
-                  <Progress value={progressValue} className="w-full" />
+                  <div className="flex w-full flex-col justify-center">
+                    <div className="flex w-full justify-between">
+                      <h3 className="text-sm">{specialty.specialty}</h3>
+                      <div className="text-right">
+                        <span className="text-muted-foreground text-sm font-medium">
+                          {specialty.appointments} agend.
+                        </span>
+                      </div>
+                    </div>
+                    <Progress value={progressValue} className="w-full" />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <div>
+              <p className="text-muted-foreground text-sm">
+                Nenhuma especialidade encontrada
+              </p>
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>

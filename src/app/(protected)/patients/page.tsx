@@ -29,6 +29,9 @@ const PatientsPage = async () => {
   if (!session.user.clinic) {
     redirect("/clinic-form");
   }
+  if (!session.user.plan) {
+    redirect("/subscription");
+  }
   const patients = await db.query.patientsTable.findMany({
     where: eq(patientsTable.clinicId, session.user.clinic.id),
   });
@@ -46,7 +49,15 @@ const PatientsPage = async () => {
         </PageActions>
       </PageHeader>
       <PageContent>
-        <DataTable data={patients} columns={patientsTableColumns} />
+        {patients.length > 0 ? (
+          <DataTable data={patients} columns={patientsTableColumns} />
+        ) : (
+          <div className="border-muted-foreground mt-4 flex items-center justify-center p-4">
+            <p className="text-muted-foreground text-sm">
+              Nenhum paciente encontrado
+            </p>
+          </div>
+        )}
       </PageContent>
     </PageContainer>
   );

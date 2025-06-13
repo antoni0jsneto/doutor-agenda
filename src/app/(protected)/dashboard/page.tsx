@@ -41,6 +41,9 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
   if (!session.user.clinic) {
     redirect("/clinic-form");
   }
+  if (!session.user.plan) {
+    redirect("/subscription");
+  }
 
   const { from, to } = await searchParams;
   if (!from || !to) {
@@ -104,10 +107,18 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
               </div>
             </CardHeader>
             <CardContent>
-              <DataTable
-                columns={appointmentsTableColumns}
-                data={todayAppointments}
-              />
+              {todayAppointments.length > 0 ? (
+                <DataTable
+                  columns={appointmentsTableColumns}
+                  data={todayAppointments}
+                />
+              ) : (
+                <div>
+                  <p className="text-muted-foreground text-sm">
+                    Nenhum agendamento encontrado
+                  </p>
+                </div>
+              )}
             </CardContent>
           </Card>
           <TopSpecialties topSpecialties={topSpecialties} />

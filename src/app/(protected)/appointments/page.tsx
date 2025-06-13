@@ -29,6 +29,9 @@ const AppointmentsPage = async () => {
   if (!session.user.clinic) {
     redirect("/clinic-form");
   }
+  if (!session.user.plan) {
+    redirect("/subscription");
+  }
 
   const [patients, doctors, appointments] = await Promise.all([
     db.query.patientsTable.findMany({
@@ -60,7 +63,15 @@ const AppointmentsPage = async () => {
         </PageActions>
       </PageHeader>
       <PageContent>
-        <DataTable data={appointments} columns={appointmentsTableColumns} />
+        {appointments.length > 0 ? (
+          <DataTable data={appointments} columns={appointmentsTableColumns} />
+        ) : (
+          <div className="border-muted-foreground mt-4 flex items-center justify-center p-4">
+            <p className="text-muted-foreground text-sm">
+              Nenhum agendamento encontrado
+            </p>
+          </div>
+        )}
       </PageContent>
     </PageContainer>
   );
