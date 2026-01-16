@@ -7,7 +7,7 @@ O projeto foi pensado para **alta conversão**, **SEO orgânico** e **tráfego p
 ## 🌐 Demonstração
 
 Acesse a demo online:  
-👉 [https://elrsolucoes.vercel.app/](https://elrsolucoes.vercel.app/)
+👉 [https://landing-vendas-elrsolucoes.vercel.app/](https://landing-vendas-elrsolucoes.vercel.app/)
 
 ---
 
@@ -102,4 +102,4 @@ Abra uma issue ou entre em contato!
 ---
 
 **Repositório:** [https://github.com/antoni0jsneto/landing-vendas-elrsolucoes](https://github.com/antoni0jsneto/landing-vendas-elrsolucoes)  
-**Demo:** [https://elrsolucoes.vercel.app/](https://elrsolucoes.vercel.app/)
+**Demo:** [https://landing-vendas-elrsolucoes.vercel.app/](https://landing-vendas-elrsolucoes.vercel.app/)
